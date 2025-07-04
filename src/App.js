@@ -114,7 +114,7 @@ const JobManagementApp = () => {
         salaryMax: parseInt(formData.salaryMax) || 0,
         postedDate: 'Just now'
       };
-      axios.post('http://localhost:5000/jobs', newJob)
+      axios.post('https://job-application-app-sgo9.onrender.com', newJob)
         .then(res => {
           setJobs(prev => [...prev, res.data]);
           setFormData({
