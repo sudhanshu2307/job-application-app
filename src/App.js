@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Search, MapPin, Briefcase, Plus, Edit3, Trash2 } from 'lucide-react';
 import { ShimmerContentBlock } from "shimmer-effects-react";
+import './output.css';
+
+
+
 
 // Preloaded jobs
 const preloadedJobs = [

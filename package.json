@@ -15,12 +15,14 @@
     "shimmer-effects-react": "^1.0.4",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+ "scripts": {
+  "start": "react-scripts start",
+  "build:css": "tailwindcss -i ./src/index.css -o ./src/output.css --minify",
+  "build": "npm run build:css && react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+,
   "eslintConfig": {
     "extends": [
       "react-app",
