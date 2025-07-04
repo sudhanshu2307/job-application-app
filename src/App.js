@@ -79,7 +79,7 @@ const JobManagementApp = () => {
   // Merge backend jobs with preloaded jobs, show shimmer while loading
   useEffect(() => {
     setLoading(true);
-    axios.get('https://job-application-app-sgo9.onrender.com')
+    axios.get('https://job-application-app-sgo9.onrender.com/jobs')
       .then(res => {
         const backendJobs = res.data || [];
         let merged = [...preloadedJobs];
@@ -114,7 +114,7 @@ const JobManagementApp = () => {
         salaryMax: parseInt(formData.salaryMax) || 0,
         postedDate: 'Just now'
       };
-      axios.post('https://job-application-app-sgo9.onrender.com', newJob)
+      axios.post('https://job-application-app-sgo9.onrender.com/jobs', newJob)
         .then(res => {
           setJobs(prev => [...prev, res.data]);
           setFormData({
