@@ -79,7 +79,7 @@ const JobManagementApp = () => {
   // Merge backend jobs with preloaded jobs, show shimmer while loading
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:5000/jobs')
+    axios.get('https://job-application-app-sgo9.onrender.com')
       .then(res => {
         const backendJobs = res.data || [];
         let merged = [...preloadedJobs];
