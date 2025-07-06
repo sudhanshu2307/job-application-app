@@ -110,7 +110,7 @@ export default function JobManagementApp() {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:5000/jobs')
+    axios.get('https://job-application-app-sgo9.onrender.com/jobs')
       .then(res => {
         const backendJobs = res.data || [];
         let merged = [...preloadedJobs];
@@ -157,7 +157,7 @@ export default function JobManagementApp() {
         postedDate: 'Just now',
         logo: getCompanyLogo(formData.companyName)
       };
-      axios.post('http://localhost:5000/jobs', newJob)
+      axios.post('https://job-application-app-sgo9.onrender.com/jobs', newJob)
         .then(res => {
           setJobs(prev => [...prev, { ...res.data, logo: getCompanyLogo(res.data.companyName) }]);
           setFormData({
