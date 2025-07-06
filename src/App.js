@@ -6,63 +6,12 @@ import 'rc-slider/assets/index.css';
 
 // Logo URLs
 const logoMap = {
-  Amazon: "https://tse3.mm.bing.net/th/id/OIP.i3FKkO6v5JuGJ8dUOLUdrwHaHa?pid=Api&P=0&h=180",
-  Tesla: "https://static.vecteezy.com/system/resources/previews/022/424/230/original/tesla-logo-editorial-free-vector.jpg",
-  Swiggy: "https://tse2.mm.bing.net/th/id/OIP.q44vYMHXS9P3m9hTzgoaHQHaEK?pid=Api&P=0&h=180",
-  Cybermind: "https://imgs.search.brave.com/qoaTVTBnmeXe_7DqFz3T2q48b26hBUpCKQyMHMRgtew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zZG4u/c2lnbmFsaGlyZS5j/by9zdG9yYWdlL2Nv/bXBhbnkvZTJmMC9k/N2M2LzE5N2MvN2Q4/NC9lMDBlLzY4ZWIv/NTA3Mi8yYmFjLndl/YnA",
-  Default: "https://imgs.search.brave.com/qoaTVTBnmeXe_7DqFz3T2q48b26hBUpCKQyMHMRgtew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zZG4u/c2lnbmFsaGlyZS5j/by9zdG9yYWdlL2Nv/bXBhbnkvZTJmMC9k/N2M2LzE5N2MvN2Q4/NC9lMDBlLzY4ZWIv/NTA3Mi8yYmFjLndl/YnA"
+  amazon: "https://tse3.mm.bing.net/th/id/OIP.i3FKkO6v5JuGJ8dUOLUdrwHaHa?pid=Api&P=0&h=180",
+  tesla: "https://static.vecteezy.com/system/resources/previews/022/424/230/original/tesla-logo-editorial-free-vector.jpg",
+  swiggy: "https://tse2.mm.bing.net/th/id/OIP.q44vYMHXS9P3m9hTzgoaHQHaEK?pid=Api&P=0&h=180",
+  cybermind: "https://imgs.search.brave.com/qoaTVTBnmeXe_7DqFz3T2q48b26hBUpCKQyMHMRgtew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zZG4u/c2lnbmFsaGlyZS5j/by9zdG9yYWdlL2Nv/bXBhbnkvZTJmMC9k/N2M2LzE5N2MvN2Q4/NC9lMDBlLzY4ZWIv/NTA3Mi8yYmFjLndl/YnA",
+  default: "https://imgs.search.brave.com/qoaTVTBnmeXe_7DqFz3T2q48b26hBUpCKQyMHMRgtew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zZG4u/c2lnbmFsaGlyZS5j/by9zdG9yYWdlL2Nv/bXBhbnkvZTJmMC9k/N2M2LzE5N2MvN2Q4/NC9lMDBlLzY4ZWIv/NTA3Mi8yYmFjLndl/YnA"
 };
-
-const preloadedJobs = [
-  {
-    jobTitle: 'Full Stack Developer',
-    companyName: 'Amazon',
-    location: 'Chennai',
-    jobType: 'Full Time',
-    salaryMin: 1200000,
-    salaryMax: 1300000,
-    jobDescription: 'A user-friendly interface lets you browse stunning photos and videos. Filter destinations based on interests and travel style, and create personalized',
-    applicationDeadline: '2025-08-15',
-    postedDate: '24h Ago',
-    logo: logoMap.Amazon
-  },
-  {
-    jobTitle: 'Node Js Developer',
-    companyName: 'Tesla',
-    location: 'Bangalore',
-    jobType: 'Full Time',
-    salaryMin: 1000000,
-    salaryMax: 1200000,
-    jobDescription: 'A user-friendly interface lets you browse stunning photos and videos. Filter destinations based on interests and travel style, and create personalized',
-    applicationDeadline: '2025-08-20',
-    postedDate: '24h Ago',
-    logo: logoMap.Tesla
-  },
-  {
-    jobTitle: 'UX/UI Designer',
-    companyName: 'Swiggy',
-    location: 'Hyderabad',
-    jobType: 'Internship',
-    salaryMin: 900000,
-    salaryMax: 1100000,
-    jobDescription: 'A user-friendly interface lets you browse stunning photos and videos. Filter destinations based on interests and travel style, and create personalized',
-    applicationDeadline: '2025-08-25',
-    postedDate: '24h Ago',
-    logo: logoMap.Swiggy
-  },
-  {
-    jobTitle: 'AI Engineer',
-    companyName: 'Cybermind',
-    location: 'Mumbai',
-    jobType: 'Part Time',
-    salaryMin: 1500000,
-    salaryMax: 2000000,
-    jobDescription: 'A user-friendly interface lets you browse stunning photos and videos. Filter destinations based on interests and travel style, and create personalized',
-    applicationDeadline: '2025-09-01',
-    postedDate: '12h Ago',
-    logo: logoMap.Cybermind
-  }
-];
 
 const locationOptions = [
   "Chennai", "Bangalore", "Mumbai", "Delhi", "Hyderabad"
@@ -72,22 +21,24 @@ const jobTypeOptions = [
   "Full Time", "Part Time", "Internship"
 ];
 
-const salaryMinLimit = 50000;
+const salaryMinLimit = 0;
 const salaryMaxLimit = 2000000;
 
-function isDuplicate(job, list) {
-  return list.some(
-    j =>
-      j.jobTitle === job.jobTitle &&
-      j.companyName === job.companyName &&
-      j.applicationDeadline === job.applicationDeadline
-  );
+// Helper for case-insensitive, trimmed comparison
+function normalize(str) {
+  return (str || '').toLowerCase().trim();
 }
 
-const getCompanyLogo = (company) => logoMap[company] || logoMap.Default;
+// Helper to get logo by company name (case-insensitive, trims " works" if present)
+function getCompanyLogo(companyName) {
+  if (!companyName) return logoMap.default;
+  let key = companyName.trim().toLowerCase();
+  if (key.endsWith(' works')) key = key.replace(/ works$/, '');
+  return logoMap[key] || logoMap.default;
+}
 
 export default function JobManagementApp() {
-  const [jobs, setJobs] = useState(preloadedJobs);
+  const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [filters, setFilters] = useState({
@@ -108,24 +59,19 @@ export default function JobManagementApp() {
   });
   const [formErrors, setFormErrors] = useState({});
 
-  useEffect(() => {
+  // Fetch jobs from backend
+  const fetchJobs = () => {
     setLoading(true);
     axios.get('https://job-application-app-sgo9.onrender.com/jobs')
       .then(res => {
-        const backendJobs = res.data || [];
-        let merged = [...preloadedJobs];
-        backendJobs.forEach(job => {
-          if (!isDuplicate(job, merged)) {
-            merged.push({
-              ...job,
-              logo: getCompanyLogo(job.companyName)
-            });
-          }
-        });
-        setJobs(merged);
+        setJobs(res.data || []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    fetchJobs();
   }, []);
 
   const validateForm = () => {
@@ -158,8 +104,8 @@ export default function JobManagementApp() {
         logo: getCompanyLogo(formData.companyName)
       };
       axios.post('https://job-application-app-sgo9.onrender.com/jobs', newJob)
-        .then(res => {
-          setJobs(prev => [...prev, { ...res.data, logo: getCompanyLogo(res.data.companyName) }]);
+        .then(() => {
+          setShowCreateForm(false);
           setFormData({
             jobTitle: '',
             companyName: '',
@@ -170,16 +116,17 @@ export default function JobManagementApp() {
             jobDescription: '',
             applicationDeadline: ''
           });
-          setShowCreateForm(false);
+          fetchJobs(); // Re-fetch all jobs after creating a new one!
         })
         .catch(() => alert("Failed to create job!"));
     }
   };
 
+  // Case-insensitive, trimmed filter
   const filteredJobs = jobs.filter(job => {
-    const matchesTitle = job.jobTitle?.toLowerCase().includes(filters.title.toLowerCase());
-    const matchesLocation = !filters.location || job.location === filters.location;
-    const matchesJobType = !filters.jobType || job.jobType === filters.jobType;
+    const matchesTitle = normalize(job.jobTitle).includes(normalize(filters.title));
+    const matchesLocation = !filters.location || normalize(job.location) === normalize(filters.location);
+    const matchesJobType = !filters.jobType || normalize(job.jobType) === normalize(filters.jobType);
     const matchesSalary =
       (Number(job.salaryMin) >= filters.salaryRange[0] && Number(job.salaryMin) <= filters.salaryRange[1]) ||
       (Number(job.salaryMax) >= filters.salaryRange[0] && Number(job.salaryMax) <= filters.salaryRange[1]);
@@ -209,7 +156,7 @@ export default function JobManagementApp() {
         }}
       >
         <button style={{ background: 'none', border: 'none', marginRight: 40 }}>
-          <img src={logoMap.Cybermind} alt="Logo" style={{ width: 44, height: 44.68 }} />
+          <img src={logoMap.cybermind} alt="Logo" style={{ width: 44, height: 44.68 }} />
         </button>
         <nav style={{ display: 'flex', gap: 40 }}>
           <button className="font-semibold text-gray-900 bg-white rounded-xl px-6 py-2">Home</button>
@@ -380,7 +327,7 @@ export default function JobManagementApp() {
                 {/* Top: Logo + Posted date */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 bg-white border rounded-full flex items-center justify-center shadow overflow-hidden">
-                    <img src={job.logo} alt={job.companyName} className="w-10 h-10 object-contain rounded-full" />
+                    <img src={job.logo || getCompanyLogo(job.companyName)} alt={job.companyName} className="w-10 h-10 object-contain rounded-full" />
                   </div>
                   <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
                     {job.postedDate}
@@ -394,7 +341,7 @@ export default function JobManagementApp() {
                   <span>•</span>
                   <span>📍 {job.location}</span>
                   <span>•</span>
-                  <span>📝 Onsite</span>
+                  <span>📝 {job.jobType}</span>
                   <span>•</span>
                   <span>💰 ₹{job.salaryMin/100000}L - ₹{job.salaryMax/100000}L</span>
                 </div>
@@ -433,7 +380,7 @@ export default function JobManagementApp() {
             inset: 0,
             zIndex: 100,
             pointerEvents: 'auto',
-            background: 'transparent', // No black overlay!
+            background: 'transparent',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
