@@ -211,11 +211,11 @@ export default function JobManagementApp() {
           <NavbarLogo />
         </button>
         <nav style={{ display: 'flex', gap: 50 }}>
-          <button className="font-semibold text-gray-900 bg-white rounded-xl px-5  py-2">Home</button>
-          <button className="font-semibold text-gray-900 bg-white rounded-xl px-5  py-2">Find Jobs</button>
-          <button className="font-semibold text-gray-900 bg-white rounded-xl px-5  py-2">Find Talents</button>
-          <button className="font-semibold text-gray-900 bg-white rounded-xl px-5  py-2">About us</button>
-          <button className="font-semibold text-gray-900 bg-white rounded-xl px-5  py-2">Testimonials</button>
+          <button className="font-semibold text-gray-900 bg-white rounded-xl px-2  py-2">Home</button>
+          <button className="font-semibold text-gray-900 bg-white rounded-xl px-2  py-2">Find Jobs</button>
+          <button className="font-semibold text-gray-900 bg-white rounded-xl px-2  py-2">Find Talents</button>
+          <button className="font-semibold text-gray-900 bg-white rounded-xl px-2  py-2">About us</button>
+          <button className="font-semibold text-gray-900 bg-white rounded-xl px-2  py-2">Testimonials</button>
         </nav>
         <button
           onClick={() => setShowCreateForm(true)}
