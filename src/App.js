@@ -169,7 +169,7 @@ export default function JobManagementApp() {
 
   const fetchJobs = () => {
     setLoading(true);
-    axios.get('http://localhost:5000/jobs')
+    axios.get('https://job-application-app-ncmp.onrender.com/jobs')
       .then(res => {
         setJobs(res.data || []);
         setLoading(false);
@@ -209,7 +209,7 @@ export default function JobManagementApp() {
         postedDate: 'Just now',
         logo: getCompanyLogo(formData.companyName)
       };
-      axios.post('http://localhost:5000/jobs', newJob)
+      axios.post('https://job-application-app-ncmp.onrender.com/jobs', newJob)
         .then(() => {
           setShowCreateForm(false);
           setFormData({
