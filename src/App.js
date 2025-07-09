@@ -21,20 +21,40 @@ const jobTypeOptions = [
   "Full Time", "Part Time", "Internship"
 ];
 
+const workModeOptions = [
+  "Onsite", "Remote", "Hybrid"
+];
+
 const salaryMinLimit = 0;
 const salaryMaxLimit = 2000000;
 
-// Helper for case-insensitive, trimmed comparison
 function normalize(str) {
   return (str || '').toLowerCase().trim();
 }
 
-// Helper to get logo by company name (case-insensitive, trims " works" if present)
 function getCompanyLogo(companyName) {
   if (!companyName) return logoMap.default;
   let key = companyName.trim().toLowerCase();
   if (key.endsWith(' works')) key = key.replace(/ works$/, '');
   return logoMap[key] || logoMap.default;
+}
+
+// Emoji helpers
+function getWorkModeEmoji(mode) {
+  switch (normalize(mode)) {
+    case 'onsite': return '🏢';
+    case 'remote': return '🏠';
+    case 'hybrid': return '🌐';
+    default: return '';
+  }
+}
+function getExpEmoji(exp) {
+  if (!exp) return '';
+  const years = parseInt(exp);
+  if (isNaN(years)) return '';
+  if (years < 2) return '🟢';
+  if (years < 5) return '🟡';
+  return '🔴';
 }
 
 export default function JobManagementApp() {
@@ -52,6 +72,8 @@ export default function JobManagementApp() {
     companyName: '',
     location: '',
     jobType: '',
+    workMode: '',
+    exp: '',
     salaryMin: '',
     salaryMax: '',
     jobDescription: '',
@@ -80,6 +102,8 @@ export default function JobManagementApp() {
     if (!formData.companyName.trim()) errors.companyName = 'Company name is required';
     if (!formData.location.trim()) errors.location = 'Location is required';
     if (!formData.jobType) errors.jobType = 'Job type is required';
+    if (!formData.workMode) errors.workMode = 'Work mode is required';
+    if (!formData.exp) errors.exp = 'Experience is required';
     if (!formData.jobDescription.trim()) errors.jobDescription = 'Job description is required';
     if (!formData.applicationDeadline) errors.applicationDeadline = 'Application deadline is required';
     setFormErrors(errors);
@@ -111,18 +135,20 @@ export default function JobManagementApp() {
             companyName: '',
             location: '',
             jobType: '',
+            workMode: '',
+            exp: '',
             salaryMin: '',
             salaryMax: '',
             jobDescription: '',
             applicationDeadline: ''
           });
-          fetchJobs(); // Re-fetch all jobs after creating a new one!
+          fetchJobs();
         })
         .catch(() => alert("Failed to create job!"));
     }
   };
 
-  // Case-insensitive, trimmed filter
+  // Filter logic
   const filteredJobs = jobs.filter(job => {
     const matchesTitle = normalize(job.jobTitle).includes(normalize(filters.title));
     const matchesLocation = !filters.location || normalize(job.location) === normalize(filters.location);
@@ -134,11 +160,10 @@ export default function JobManagementApp() {
   });
 
   return (
-    <div style={{ minHeight: "100vh", background: "#F9FAFB", position: "relative" }}>
+    <div style={{ minHeight: "100vh", background: "#fff", position: "relative", fontFamily: 'Inter, sans-serif' }}>
       {/* Navbar */}
       <header
         style={{
-          boxSizing: 'border-box',
           position: 'absolute',
           width: 890,
           height: 80,
@@ -211,6 +236,7 @@ export default function JobManagementApp() {
             height: 120
           }}
         >
+          {/* Search */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -221,7 +247,7 @@ export default function JobManagementApp() {
               className="w-full pl-10 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
             />
           </div>
-          {/* Preferred Location with dropdown icon at right */}
+          {/* Location */}
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <select
@@ -247,7 +273,7 @@ export default function JobManagementApp() {
               }}
             />
           </div>
-          {/* Job Type with dropdown icon at right */}
+          {/* Job Type */}
           <div className="relative">
             <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <select
@@ -337,13 +363,24 @@ export default function JobManagementApp() {
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{job.jobTitle}</h3>
                 {/* Details */}
                 <div className="flex flex-wrap items-center text-gray-600 mb-2 gap-2 text-sm">
-                  <span>🏢 {job.companyName}</span>
+                  {/* Company logo before company name */}
+                  <img
+                    src={job.logo || getCompanyLogo(job.companyName)}
+                    alt={job.companyName}
+                    style={{ width: 20, height: 20, borderRadius: '50%', marginRight: 4, display: 'inline-block' }}
+                  />
+                  <span>{job.companyName}</span>
                   <span>•</span>
                   <span>📍 {job.location}</span>
                   <span>•</span>
                   <span>📝 {job.jobType}</span>
                   <span>•</span>
                   <span>💰 ₹{job.salaryMin/100000}L - ₹{job.salaryMax/100000}L</span>
+                </div>
+                {/* Emoji tags for work mode and experience */}
+                <div className="flex items-center gap-2 mb-2">
+                  <span style={{ fontSize: 18 }}>{getWorkModeEmoji(job.workMode)}</span>
+                  <span style={{ fontSize: 18 }}>{getExpEmoji(job.exp)}</span>
                 </div>
                 {/* Description */}
                 <ul className="list-disc ml-5 text-gray-600 text-sm mb-4">
@@ -380,7 +417,7 @@ export default function JobManagementApp() {
             inset: 0,
             zIndex: 100,
             pointerEvents: 'auto',
-            background: 'transparent',
+            background: 'rgba(0,0,0,0.1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -479,6 +516,38 @@ export default function JobManagementApp() {
                     ))}
                   </select>
                   {formErrors.jobType && <p className="text-red-500 text-sm mt-1">{formErrors.jobType}</p>}
+                </div>
+              </div>
+              {/* Work Mode and Experience */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-lg font-semibold text-gray-600 mb-2">Work Mode</label>
+                  <select
+                    value={formData.workMode}
+                    onChange={(e) => handleInputChange('workMode', e.target.value)}
+                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
+                      formErrors.workMode ? 'border-red-500' : 'border-gray-900'
+                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  >
+                    <option value="">Select Work Mode</option>
+                    {workModeOptions.map(mode => (
+                      <option key={mode} value={mode}>{mode}</option>
+                    ))}
+                  </select>
+                  {formErrors.workMode && <p className="text-red-500 text-sm mt-1">{formErrors.workMode}</p>}
+                </div>
+                <div>
+                  <label className="block text-lg font-semibold text-gray-600 mb-2">Experience (years)</label>
+                  <input
+                    type="number"
+                    value={formData.exp}
+                    onChange={(e) => handleInputChange('exp', e.target.value)}
+                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
+                      formErrors.exp ? 'border-red-500' : 'border-gray-900'
+                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    placeholder="e.g. 3"
+                  />
+                  {formErrors.exp && <p className="text-red-500 text-sm mt-1">{formErrors.exp}</p>}
                 </div>
               </div>
               {/* Salary Range and Application Deadline */}

@@ -7,17 +7,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('✅ MongoDB Connected'))
-  .catch(err => {
-    console.error('❌ MongoDB Connection Error:', err);
-    process.exit(1);
-  });
+// MongoDB Connection with improved error handling
+function connectWithRetry() {
+  mongoose.connect(process.env.MONGO_URL)
+    .then(() => console.log('✅ MongoDB Connected'))
+    .catch(err => {
+      console.error('❌ MongoDB Connection Error:', err.message);
+      // Retry connection after 10 seconds
+      setTimeout(connectWithRetry, 10000);
+    });
+}
+connectWithRetry();
 
-// Job Schema & Model (NO experience or requirements)
+// Job Schema & Model
 const jobSchema = new mongoose.Schema({
   jobTitle: String,
   companyName: String,
@@ -46,7 +48,7 @@ const logoMap = {
 // Helper to normalize company name for logo mapping
 function getCompanyLogo(companyName) {
   if (!companyName) return logoMap.default;
-  const key = companyName.trim().toLowerCase().replace(/\s+works$/, ''); // remove trailing "works"
+  const key = companyName.trim().toLowerCase().replace(/\s+works$/, '');
   return logoMap[key] || logoMap.default;
 }
 
@@ -77,6 +79,14 @@ app.post('/jobs', async (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('Job Management API is running!');
+});
+
+// Global error handlers (optional but recommended)
+process.on('unhandledRejection', err => {
+  console.error('Unhandled rejection:', err);
+});
+process.on('uncaughtException', err => {
+  console.error('Uncaught exception:', err);
 });
 
 const PORT = process.env.PORT || 5000;
