@@ -529,182 +529,196 @@ export default function JobManagementApp() {
             justifyContent: 'center'
           }}
         >
-         <form
+   <form
   style={{
     background: "#fff",
     boxShadow: "0px 0px 24px rgba(169, 169, 169, 0.25)",
     borderRadius: 16,
     width: 848,
     maxWidth: "90vw",
+    maxHeight: "90vh",
     position: "absolute",
     left: "50%",
     top: 117,
     transform: "translateX(-50%)",
-    padding: 40,
-    // No fixed height, no maxHeight, no overflowY
+    padding: 0,
+    display: "flex",
+    flexDirection: "column"
   }}
-            onSubmit={handleSubmit}
-            autoComplete="off"
-          >
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Create Job Opening</h2>
-              <button
-                type="button"
-                onClick={() => setShowCreateForm(false)}
-                className="text-gray-500 hover:text-gray-700 text-2xl"
-                aria-label="Close"
-              >
-                ×
-              </button>
-            </div>
-            <div className="space-y-6">
-              {/* Job Title and Company Name */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-lg font-semibold text-gray-900 mb-2">Job Title</label>
-                  <input
-                    type="text"
-                    value={formData.jobTitle}
-                    onChange={(e) => handleInputChange('jobTitle', e.target.value)}
-                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
-                      formErrors.jobTitle ? 'border-red-500' : 'border-gray-900'
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                    placeholder="Full Stack Developer"
-                  />
-                  {formErrors.jobTitle && <p className="text-red-500 text-sm mt-1">{formErrors.jobTitle}</p>}
-                </div>
-                <div>
-                  <label className="block text-lg font-semibold text-gray-900 mb-2">Company Name</label>
-                  <input
-                    type="text"
-                    value={formData.companyName}
-                    onChange={(e) => handleInputChange('companyName', e.target.value)}
-                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
-                      formErrors.companyName ? 'border-red-500' : 'border-gray-900'
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                    placeholder="Amazon, Tesla, Swiggy, Cybermind"
-                  />
-                  {formErrors.companyName && <p className="text-red-500 text-sm mt-1">{formErrors.companyName}</p>}
-                </div>
-              </div>
-              {/* Location and Job Type */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-lg font-semibold text-gray-600 mb-2">Location</label>
-                  <select
-                    value={formData.location}
-                    onChange={(e) => handleInputChange('location', e.target.value)}
-                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
-                      formErrors.location ? 'border-red-500' : 'border-gray-300'
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                  >
-                    <option value="">Choose Preferred Location</option>
-                    {locationOptions.map(loc => (
-                      <option key={loc} value={loc}>{loc}</option>
-                    ))}
-                  </select>
-                  {formErrors.location && <p className="text-red-500 text-sm mt-1">{formErrors.location}</p>}
-                </div>
-                <div>
-                  <label className="block text-lg font-semibold text-gray-600 mb-2">Job Type</label>
-                  <select
-                    value={formData.jobType}
-                    onChange={(e) => handleInputChange('jobType', e.target.value)}
-                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
-                      formErrors.jobType ? 'border-red-500' : 'border-gray-900'
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                  >
-                    <option value="">Job Type</option>
-                    {jobTypeOptions.map(type => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                  {formErrors.jobType && <p className="text-red-500 text-sm mt-1">{formErrors.jobType}</p>}
-                </div>
-              </div>
-              {/* Salary Range and Application Deadline */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-lg font-semibold text-gray-600 mb-2">Salary Range</label>
-                  <div className="flex gap-4">
-                    <input
-                      type="number"
-                      value={formData.salaryMin}
-                      onChange={(e) => handleInputChange('salaryMin', e.target.value)}
-                      placeholder="₹0"
-                      className="w-full px-4 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <input
-                      type="number"
-                      value={formData.salaryMax}
-                      onChange={(e) => handleInputChange('salaryMax', e.target.value)}
-                      placeholder="₹12,00,000"
-                      className="w-full px-4 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-lg font-semibold text-gray-600 mb-2">Application Deadline</label>
-                  <input
-                    type="date"
-                    value={formData.applicationDeadline}
-                    onChange={(e) => handleInputChange('applicationDeadline', e.target.value)}
-                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
-                      formErrors.applicationDeadline ? 'border-red-500' : 'border-gray-300'
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                  />
-                  {formErrors.applicationDeadline && <p className="text-red-500 text-sm mt-1">{formErrors.applicationDeadline}</p>}
-                </div>
-              </div>
-              {/* Job Description */}
-              <div>
-                <label className="block text-lg font-semibold text-gray-600 mb-2">Job Description</label>
-                <textarea
-                  value={formData.jobDescription}
-                  onChange={(e) => handleInputChange('jobDescription', e.target.value)}
-                  rows={4}
-                  className={`w-full px-4 py-4 border rounded-xl text-lg ${
-                    formErrors.jobDescription ? 'border-red-500' : 'border-gray-300'
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none`}
-                  placeholder="A user-friendly interface lets you browse stunning photos and videos."
-                />
-                {formErrors.jobDescription && <p className="text-red-500 text-sm mt-1">{formErrors.jobDescription}</p>}
-              </div>
-              {/* Action Buttons */}
-             {/* Action Buttons - Sticky Footer */}
-<div
-  style={{
-    position: 'sticky',
-    bottom: 0,
-    background: '#fff',
-    paddingTop: 16,
-    paddingBottom: 24,
-    marginLeft: -40,  // match modal padding if needed
-    marginRight: -40, // match modal padding if needed
-    paddingLeft: 40,
-    paddingRight: 40,
-    boxShadow: '0 -2px 12px rgba(0,0,0,0.03)',
-    zIndex: 10,
-  }}
-  className="flex gap-4"
+  onSubmit={handleSubmit}
+  autoComplete="off"
 >
-  <button
-    type="button"
-    onClick={() => setShowCreateForm(false)}
-    className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors"
-  >
-    Cancel
-  </button>
-  <button
-    type="submit"
-    className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-xl font-medium hover:bg-blue-600 transition-colors"
-  >
-    Publish ≫
-  </button>
-</div>
+  {/* Modal Header */}
+  <div style={{ padding: 40, paddingBottom: 0 }}>
+    <div className="flex items-center justify-between mb-6">
+      <h2 className="text-2xl font-bold text-gray-900">Create Job Opening</h2>
+      <button
+        type="button"
+        onClick={() => setShowCreateForm(false)}
+        className="text-gray-500 hover:text-gray-700 text-2xl"
+        aria-label="Close"
+      >
+        ×
+      </button>
+    </div>
+  </div>
 
-            </div>
-          </form>
+  {/* Modal Body (Scrollable) */}
+  <div
+    style={{
+      overflowY: "auto",
+      padding: 40,
+      paddingTop: 0,
+      flex: 1,
+      minHeight: 0
+    }}
+  >
+    {/* Job Title and Company Name */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label className="block text-lg font-semibold text-gray-900 mb-2">Job Title</label>
+        <input
+          type="text"
+          value={formData.jobTitle}
+          onChange={(e) => handleInputChange('jobTitle', e.target.value)}
+          className={`w-full px-4 py-4 border rounded-xl text-lg ${
+            formErrors.jobTitle ? 'border-red-500' : 'border-gray-900'
+          } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+          placeholder="Full Stack Developer"
+        />
+        {formErrors.jobTitle && <p className="text-red-500 text-sm mt-1">{formErrors.jobTitle}</p>}
+      </div>
+      <div>
+        <label className="block text-lg font-semibold text-gray-900 mb-2">Company Name</label>
+        <input
+          type="text"
+          value={formData.companyName}
+          onChange={(e) => handleInputChange('companyName', e.target.value)}
+          className={`w-full px-4 py-4 border rounded-xl text-lg ${
+            formErrors.companyName ? 'border-red-500' : 'border-gray-900'
+          } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+          placeholder="Amazon, Tesla, Swiggy, Cybermind"
+        />
+        {formErrors.companyName && <p className="text-red-500 text-sm mt-1">{formErrors.companyName}</p>}
+      </div>
+    </div>
+    {/* Location and Job Type */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <div>
+        <label className="block text-lg font-semibold text-gray-600 mb-2">Location</label>
+        <select
+          value={formData.location}
+          onChange={(e) => handleInputChange('location', e.target.value)}
+          className={`w-full px-4 py-4 border rounded-xl text-lg ${
+            formErrors.location ? 'border-red-500' : 'border-gray-300'
+          } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+        >
+          <option value="">Choose Preferred Location</option>
+          {locationOptions.map(loc => (
+            <option key={loc} value={loc}>{loc}</option>
+          ))}
+        </select>
+        {formErrors.location && <p className="text-red-500 text-sm mt-1">{formErrors.location}</p>}
+      </div>
+      <div>
+        <label className="block text-lg font-semibold text-gray-600 mb-2">Job Type</label>
+        <select
+          value={formData.jobType}
+          onChange={(e) => handleInputChange('jobType', e.target.value)}
+          className={`w-full px-4 py-4 border rounded-xl text-lg ${
+            formErrors.jobType ? 'border-red-500' : 'border-gray-900'
+          } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+        >
+          <option value="">Job Type</option>
+          {jobTypeOptions.map(type => (
+            <option key={type} value={type}>{type}</option>
+          ))}
+        </select>
+        {formErrors.jobType && <p className="text-red-500 text-sm mt-1">{formErrors.jobType}</p>}
+      </div>
+    </div>
+    {/* Salary Range and Application Deadline */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      <div>
+        <label className="block text-lg font-semibold text-gray-600 mb-2">Salary Range</label>
+        <div className="flex gap-4">
+          <input
+            type="number"
+            value={formData.salaryMin}
+            onChange={(e) => handleInputChange('salaryMin', e.target.value)}
+            placeholder="₹0"
+            className="w-full px-4 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="number"
+            value={formData.salaryMax}
+            onChange={(e) => handleInputChange('salaryMax', e.target.value)}
+            placeholder="₹12,00,000"
+            className="w-full px-4 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+      <div>
+        <label className="block text-lg font-semibold text-gray-600 mb-2">Application Deadline</label>
+        <input
+          type="date"
+          value={formData.applicationDeadline}
+          onChange={(e) => handleInputChange('applicationDeadline', e.target.value)}
+          className={`w-full px-4 py-4 border rounded-xl text-lg ${
+            formErrors.applicationDeadline ? 'border-red-500' : 'border-gray-300'
+          } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+        />
+        {formErrors.applicationDeadline && <p className="text-red-500 text-sm mt-1">{formErrors.applicationDeadline}</p>}
+      </div>
+    </div>
+    {/* Job Description */}
+    <div className="mt-6">
+      <label className="block text-lg font-semibold text-gray-600 mb-2">Job Description</label>
+      <textarea
+        value={formData.jobDescription}
+        onChange={(e) => handleInputChange('jobDescription', e.target.value)}
+        rows={4}
+        className={`w-full px-4 py-4 border rounded-xl text-lg ${
+          formErrors.jobDescription ? 'border-red-500' : 'border-gray-300'
+        } focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none`}
+        placeholder="A user-friendly interface lets you browse stunning photos and videos."
+        style={{ minHeight: 100, maxHeight: 240, overflowY: 'auto' }}
+      />
+      {formErrors.jobDescription && <p className="text-red-500 text-sm mt-1">{formErrors.jobDescription}</p>}
+    </div>
+  </div>
+
+  {/* Sticky Footer */}
+  <div
+    style={{
+      position: 'sticky',
+      bottom: 0,
+      background: '#fff',
+      paddingTop: 16,
+      paddingBottom: 24,
+      paddingLeft: 40,
+      paddingRight: 40,
+      boxShadow: '0 -2px 12px rgba(0,0,0,0.03)',
+      zIndex: 10,
+    }}
+    className="flex gap-4"
+  >
+    <button
+      type="button"
+      onClick={() => setShowCreateForm(false)}
+      className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-xl font-medium hover:bg-blue-600 transition-colors"
+    >
+      Publish ≫
+    </button>
+  </div>
+</form>
+
         </div>
       )}
     </div>
