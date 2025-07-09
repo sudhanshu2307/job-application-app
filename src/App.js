@@ -421,7 +421,7 @@ export default function JobManagementApp() {
           position: 'absolute',
           width: 1312,
           minHeight: 360,
-          left: 64,
+          left: 85,
           top: 201,
           zIndex: 10
         }}
