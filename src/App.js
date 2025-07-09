@@ -529,22 +529,20 @@ export default function JobManagementApp() {
             justifyContent: 'center'
           }}
         >
-          <form
-            style={{
-              background: "#fff",
-              boxShadow: "0px 0px 24px rgba(169, 169, 169, 0.25)",
-              borderRadius: 16,
-              width: 848,
-              maxWidth: "90vw",
-              height: 650,
-              maxHeight: "90vh",
-              position: "absolute",
-              left: "50%",
-              top: 117,
-              transform: "translateX(-50%)",
-              padding: 40,
-              overflowY: "auto"
-            }}
+         <form
+  style={{
+    background: "#fff",
+    boxShadow: "0px 0px 24px rgba(169, 169, 169, 0.25)",
+    borderRadius: 16,
+    width: 848,
+    maxWidth: "90vw",
+    position: "absolute",
+    left: "50%",
+    top: 117,
+    transform: "translateX(-50%)",
+    padding: 40,
+    // No fixed height, no maxHeight, no overflowY
+  }}
             onSubmit={handleSubmit}
             autoComplete="off"
           >
@@ -673,21 +671,38 @@ export default function JobManagementApp() {
                 {formErrors.jobDescription && <p className="text-red-500 text-sm mt-1">{formErrors.jobDescription}</p>}
               </div>
               {/* Action Buttons */}
-              <div className="flex gap-4 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowCreateForm(false)}
-                  className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-xl font-medium hover:bg-blue-600 transition-colors"
-                >
-                  Publish ≫
-                </button>
-              </div>
+             {/* Action Buttons - Sticky Footer */}
+<div
+  style={{
+    position: 'sticky',
+    bottom: 0,
+    background: '#fff',
+    paddingTop: 16,
+    paddingBottom: 24,
+    marginLeft: -40,  // match modal padding if needed
+    marginRight: -40, // match modal padding if needed
+    paddingLeft: 40,
+    paddingRight: 40,
+    boxShadow: '0 -2px 12px rgba(0,0,0,0.03)',
+    zIndex: 10,
+  }}
+  className="flex gap-4"
+>
+  <button
+    type="button"
+    onClick={() => setShowCreateForm(false)}
+    className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors"
+  >
+    Cancel
+  </button>
+  <button
+    type="submit"
+    className="flex-1 px-6 py-3 bg-blue-500 text-white rounded-xl font-medium hover:bg-blue-600 transition-colors"
+  >
+    Publish ≫
+  </button>
+</div>
+
             </div>
           </form>
         </div>
