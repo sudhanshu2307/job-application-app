@@ -4,118 +4,21 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 // SVG ICON COMPONENTS
-
-function NavbarLogo() {
+function NavbarLogo() { /* ...your SVG... */ return (<svg width="44" height="46" viewBox="0 0 44 46" fill="none"><circle cx="22" cy="23" r="20" fill="#8636F8" /><rect x="12" y="13" width="20" height="20" rx="6" fill="#fff" /></svg>);}
+function SearchIcon() { return (<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 13L19 19M8 15C4.134 15 1 11.866 1 8C1 4.134 4.134 1 8 1C11.866 1 15 4.134 15 8C15 11.866 11.866 15 8 15Z" stroke="#686868" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>);}
+function LocationIcon() { return (<svg width="18" height="23" viewBox="0 0 18 23" fill="none"><ellipse cx="9" cy="9" rx="7" ry="7" stroke="#686868" strokeWidth="1.5"/><circle cx="9" cy="9" r="2" fill="#686868"/><path d="M9 16V22" stroke="#686868" strokeWidth="1.5"/></svg>);}
+function JobTypeIcon() { return (<svg width="20" height="18" viewBox="0 0 20 18" fill="none"><rect x="2" y="3" width="16" height="12" rx="3" stroke="#686868" strokeWidth="1.5"/><rect x="6" y="7" width="8" height="4" rx="2" fill="#686868"/></svg>);}
+function ExpIcon() { return (<svg width="19" height="16" viewBox="0 0 19 16" fill="none"><circle cx="8" cy="6" r="4" stroke="#5A5A5A" strokeWidth="1.6"/><path d="M14 14C14 11.7909 11.3137 10 8 10C4.68629 10 2 11.7909 2 14" stroke="#5A5A5A" strokeWidth="1.6" strokeLinecap="round"/></svg>);}
+function OnsiteIcon() { return (<svg width="20" height="18" viewBox="0 0 20 18" fill="none"><rect x="3" y="3" width="14" height="12" rx="3" stroke="#5A5A5A" strokeWidth="1.6"/><circle cx="10" cy="9" r="2" fill="#5A5A5A"/></svg>);}
+function LpaIcon() { return (<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#5A5A5A" strokeWidth="1.6"/><text x="10" y="15" textAnchor="middle" fontSize="9" fill="#5A5A5A">₹</text></svg>);}
+function ChevronDownIcon() {
   return (
-    <svg width="44" height="46" viewBox="0 0 44 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clipPath="url(#clip0_2_109)">
-        <mask id="mask0_2_109" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x="0" y="0" width="44" height="46">
-          <path d="M44 0.661621H0V45.3385H44V0.661621Z" fill="white"/>
-        </mask>
-        <g mask="url(#mask0_2_109)">
-          <path d="M26.33 5.41968L26.8852 23.3961L41.6353 13.9324L26.33 5.41968Z" fill="#333333"/>
-          <path d="M41.5308 32.7551V13.8619L20.395 27.4678V45.3387H21.1064" fill="#494949"/>
-          <path d="M3.18878 32.0419L16.7153 23.3629L17.2245 39.8485L3.18878 32.0419Z" fill="url(#paint0_linear_2_109)"/>
-          <path d="M3.18878 32.0419L16.7153 23.3629L17.2245 39.8485L3.18878 32.0419Z" fill="url(#paint1_linear_2_109)"/>
-          <path d="M3.18878 32.0419L16.7153 23.3629L17.2245 39.8485L3.18878 32.0419Z" stroke="url(#paint2_linear_2_109)" strokeWidth="0.846154"/>
-          <path d="M3.18878 32.0419L16.7153 23.3629L17.2245 39.8485L3.18878 32.0419Z" stroke="url(#paint3_linear_2_109)" strokeWidth="0.846154"/>
-          <path d="M2.46906 13.2451V32.1381L23.6051 18.5501V0.661621H22.8936" fill="url(#paint4_linear_2_109)"/>
-          <path d="M2.46906 13.2451V32.1381L23.6051 18.5501V0.661621H22.8936" fill="url(#paint5_linear_2_109)"/>
-        </g>
-      </g>
-      <defs>
-        <linearGradient id="paint0_linear_2_109" x1="2.36496" y1="31.5921" x2="17.6704" y2="31.5921" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00AAFF"/>
-          <stop offset="1" stopColor="#8636F8"/>
-        </linearGradient>
-        <linearGradient id="paint1_linear_2_109" x1="10.0177" y1="40.5806" x2="10.0177" y2="22.6037" gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" stopOpacity="0.6"/>
-          <stop offset="0.1085" stopColor="white" stopOpacity="0.455"/>
-          <stop offset="0.4332" stopColor="white" stopOpacity="0.216"/>
-          <stop offset="0.6639" stopColor="white" stopOpacity="0.06"/>
-          <stop offset="0.775" stopColor="white" stopOpacity="0"/>
-        </linearGradient>
-        <linearGradient id="paint2_linear_2_109" x1="2.36496" y1="31.5921" x2="17.6704" y2="31.5921" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#00AAFF"/>
-          <stop offset="1" stopColor="#8636F8"/>
-        </linearGradient>
-        <linearGradient id="paint3_linear_2_109" x1="10.0177" y1="40.5806" x2="10.0177" y2="22.6037" gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" stopOpacity="0.6"/>
-          <stop offset="0.1085" stopColor="white" stopOpacity="0.455"/>
-          <stop offset="0.4332" stopColor="white" stopOpacity="0.216"/>
-          <stop offset="0.6639" stopColor="white" stopOpacity="0.06"/>
-          <stop offset="0.775" stopColor="white" stopOpacity="0"/>
-        </linearGradient>
-        <linearGradient id="paint4_linear_2_109" x1="1.5926" y1="20.0785" x2="24.8932" y2="18.3851" gradientUnits="userSpaceOnUse">
-          <stop offset="0.0226" stopColor="#8636F8"/>
-          <stop offset="0.3484" stopColor="#F020B3"/>
-          <stop offset="0.6742" stopColor="#F8475E"/>
-          <stop offset="1" stopColor="#FF9421"/>
-        </linearGradient>
-        <linearGradient id="paint5_linear_2_109" x1="13.0371" y1="32.1381" x2="13.0371" y2="0.661621" gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" stopOpacity="0.6"/>
-          <stop offset="0.0842" stopColor="white" stopOpacity="0.455"/>
-          <stop offset="0.367" stopColor="white" stopOpacity="0.216"/>
-          <stop offset="0.568" stopColor="white" stopOpacity="0.06"/>
-          <stop offset="0.6648" stopColor="white" stopOpacity="0"/>
-        </linearGradient>
-        <clipPath id="clip0_2_109">
-          <rect width="44" height="44.6769" fill="white" transform="translate(0 0.661621)"/>
-        </clipPath>
-      </defs>
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" style={{ pointerEvents: 'none' }}>
+      <path d="M6 8L10 12L14 8" stroke="#686868" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
 
-function SearchIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13 13L19 19M8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15Z" stroke="#686868" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function LocationIcon() {
-  return (
-    <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.7808 19.7005L11.1906 19.2377L11.7808 19.7005ZM6.21921 19.7005L5.62903 20.1633L6.21921 19.7005ZM9 22.0055V21.2555V22.0055ZM16.25 9.6087C16.25 10.8352 15.6104 12.4764 14.6037 14.256C13.6137 16.0063 12.3342 17.7794 11.1906 19.2377L12.371 20.1633C13.5371 18.6762 14.8672 16.837 15.9094 14.9945C16.9349 13.1814 17.75 11.2494 17.75 9.6087H16.25ZM6.80938 19.2377C5.66578 17.7794 4.38628 16.0063 3.39625 14.256C2.38962 12.4764 1.75 10.8352 1.75 9.6087H0.25C0.25 11.2494 1.06511 13.1814 2.09064 14.9945C3.13277 16.837 4.46288 18.6762 5.62903 20.1633L6.80938 19.2377ZM1.75 9.6087C1.75 5.21571 5.04678 1.75 9 1.75V0.25C4.11666 0.25 0.25 4.49277 0.25 9.6087H1.75ZM9 1.75C12.9532 1.75 16.25 5.21571 16.25 9.6087H17.75C17.75 4.49277 13.8833 0.25 9 0.25V1.75ZM11.1906 19.2377C10.5717 20.027 10.1641 20.5426 9.79918 20.8741C9.46635 21.1764 9.24418 21.2555 9 21.2555V22.7555C9.72906 22.7555 10.2948 22.4504 10.8078 21.9844C11.2886 21.5476 11.7849 20.9107 12.371 20.1633L11.1906 19.2377ZM5.62903 20.1633C6.21511 20.9107 6.71136 21.5476 7.19224 21.9844C7.70524 22.4504 8.27094 22.7555 9 22.7555V21.2555C8.75582 21.2555 8.53365 21.1764 8.20082 20.8741C7.83587 20.5426 7.42834 20.027 6.80938 19.2377L5.62903 20.1633ZM5.25 10C5.25 12.0711 6.92893 13.75 9 13.75V12.25C7.75736 12.25 6.75 11.2426 6.75 10H5.25ZM9 13.75C11.0711 13.75 12.75 12.0711 12.75 10H11.25C11.25 11.2426 10.2426 12.25 9 12.25V13.75ZM12.75 10C12.75 7.92893 11.0711 6.25 9 6.25V7.75C10.2426 7.75 11.25 8.75736 11.25 10H12.75ZM9 6.25C6.92893 6.25 5.25 7.92893 5.25 10H6.75C6.75 8.75736 7.75736 7.75 9 7.75V6.25Z" fill="#686868"/>
-    </svg>
-  );
-}
-
-function JobTypeIcon() {
-  return (
-    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13 17C13 14.7909 10.3137 13 7 13C3.68629 13 1 14.7909 1 17M14.8281 3.17188C15.1996 3.54331 15.4942 3.98427 15.6952 4.46957C15.8962 4.95487 15.9999 5.47533 15.9999 6.00062C15.9999 6.52591 15.8963 7.04497 15.6953 7.53027C15.4943 8.01558 15.1996 8.45705 14.8281 8.82848M17 1C17.6566 1.65661 18.1775 2.43612 18.5328 3.29402C18.8882 4.15192 19.0718 5.07127 19.0718 5.99985C19.0718 6.92844 18.8886 7.84815 18.5332 8.70605C18.1778 9.56396 17.6566 10.3435 17 11.0001M7 10C4.79086 10 3 8.20914 3 6C3 3.79086 4.79086 2 7 2C9.20914 2 11 3.79086 11 6C11 8.20914 9.20914 10 7 10Z" stroke="#686868" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function ExpIcon() {
-  return (
-    <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.7 14.75C11.7 12.7618 9.28233 11.15 6.29999 11.15C3.31766 11.15 0.899994 12.7618 0.899994 14.75M15.3 12.05V9.35M15.3 9.35V6.65M15.3 9.35H12.6M15.3 9.35H18M6.29999 8.45C4.31177 8.45 2.69999 6.83822 2.69999 4.85C2.69999 2.86177 4.31177 1.25 6.29999 1.25C8.28822 1.25 9.89999 2.86177 9.89999 4.85C9.89999 6.83822 8.28822 8.45 6.29999 8.45Z" stroke="#5A5A5A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function OnsiteIcon() {
-  return (
-    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1.76364 16.3408H3.49091M3.49091 16.3408H12.1273M3.49091 16.3408V4.42274C3.49091 3.45538 3.49091 2.97133 3.67918 2.60185C3.84478 2.27684 4.10882 2.0128 4.43383 1.8472C4.80331 1.65894 5.28736 1.65894 6.25472 1.65894H9.36381C10.3312 1.65894 10.8142 1.65894 11.1837 1.8472C11.5087 2.0128 11.7736 2.27684 11.9392 2.60185C12.1273 2.97097 12.1273 3.45443 12.1273 4.4199V9.43166M12.1273 16.3408H17.3091M12.1273 16.3408V9.43166M17.3091 16.3408H19.0364M17.3091 16.3408V9.43166C17.3091 8.62686 17.309 8.22465 17.1775 7.90723C17.0022 7.484 16.6663 7.14754 16.243 6.97223C15.9256 6.84075 15.5228 6.84075 14.718 6.84075C13.9132 6.84075 13.5108 6.84075 13.1933 6.97223C12.7701 7.14754 12.4341 7.484 12.2588 7.90723C12.1273 8.22465 12.1273 8.62685 12.1273 9.43166M6.08182 7.70439H9.53637M6.08182 5.11348H9.53637" stroke="#5A5A5A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function LpaIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.1728 10.0001L9.99096 15.4546L1.80914 10.0001M18.1728 13.6365L9.99096 19.091L1.80914 13.6365M18.1728 6.36373L9.99096 11.8183L1.80914 6.36373L9.99096 0.90918L18.1728 6.36373Z" stroke="#5A5A5A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-// Logo URLs for job cards (fallback)
 const logoMap = {
   amazon: "https://tse3.mm.bing.net/th/id/OIP.i3FKkO6v5JuGJ8dUOLUdrwHaHa?pid=Api&P=0&h=180",
   tesla: "https://static.vecteezy.com/system/resources/previews/022/424/230/original/tesla-logo-editorial-free-vector.jpg",
@@ -123,22 +26,14 @@ const logoMap = {
   cybermind: "https://imgs.search.brave.com/qoaTVTBnmeXe_7DqFz3T2q48b26hBUpCKQyMHMRgtew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zZG4u/c2lnbmFsaGlyZS5j/by9zdG9yYWdlL2Nv/bXBhbnkvZTJmMC9k/N2M2LzE5N2MvN2Q4/NC9lMDBlLzY4ZWIv/NTA3Mi8yYmFjLndl/YnA",
   default: "https://imgs.search.brave.com/qoaTVTBnmeXe_7DqFz3T2q48b26hBUpCKQyMHMRgtew/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zZG4u/c2lnbmFsaGlyZS5j/by9zdG9yYWdlL2Nv/bXBhbnkvZTJmMC9k/N2M2LzE5N2MvN2Q4/NC9lMDBlLzY4ZWIv/NTA3Mi8yYmFjLndl/YnA"
 };
-
-const locationOptions = [
-  "Chennai", "Bangalore", "Mumbai", "Delhi", "Hyderabad"
-];
-
-const jobTypeOptions = [
-  "Full Time", "Part Time", "Internship"
-];
-
+const locationOptions = ["Chennai", "Bangalore", "Mumbai", "Delhi", "Hyderabad"];
+const jobTypeOptions = ["Full Time", "Part Time", "Internship"];
 const salaryMinLimit = 0;
 const salaryMaxLimit = 2000000;
 
 function normalize(str) {
   return (str || '').toLowerCase().trim();
 }
-
 function getCompanyLogo(companyName) {
   if (!companyName) return logoMap.default;
   let key = companyName.trim().toLowerCase();
@@ -163,7 +58,8 @@ export default function JobManagementApp() {
     jobType: '',
     salaryMin: '',
     salaryMax: '',
-    jobDescription: ''
+    jobDescription: '',
+    applicationDeadline: ''
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -177,9 +73,7 @@ export default function JobManagementApp() {
       .catch(() => setLoading(false));
   };
 
-  useEffect(() => {
-    fetchJobs();
-  }, []);
+  useEffect(() => { fetchJobs(); }, []);
 
   const validateForm = () => {
     const errors = {};
@@ -188,15 +82,14 @@ export default function JobManagementApp() {
     if (!formData.location.trim()) errors.location = 'Location is required';
     if (!formData.jobType) errors.jobType = 'Job type is required';
     if (!formData.jobDescription.trim()) errors.jobDescription = 'Job description is required';
+    if (!formData.applicationDeadline) errors.applicationDeadline = 'Application deadline is required';
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    if (formErrors[field]) {
-      setFormErrors(prev => ({ ...prev, [field]: '' }));
-    }
+    if (formErrors[field]) setFormErrors(prev => ({ ...prev, [field]: '' }));
   };
 
   const handleSubmit = (e) => {
@@ -219,7 +112,8 @@ export default function JobManagementApp() {
             jobType: '',
             salaryMin: '',
             salaryMax: '',
-            jobDescription: ''
+            jobDescription: '',
+            applicationDeadline: ''
           });
           fetchJobs();
         })
@@ -290,85 +184,137 @@ export default function JobManagementApp() {
       <div
         style={{
           position: 'absolute',
-          width: 1440,
-          height: 214,
-          left: '50%',
-          top: 120,
-          transform: 'translateX(-50%)',
+          width: '100vw',
+          height: 56, // reduced height
+          left: 0,
+          top: 101,
           background: '#fff',
-          boxShadow: '0px 0px 14px rgba(198,191,191,0.25)',
-          borderRadius: 32,
+          boxShadow: '0px 0px 14px rgba(198,191,191,0.15)',
+          borderRadius: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 40
+          zIndex: 40,
+          border: 'none'
         }}
       >
         <div
           style={{
-            width: '90%',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 2fr',
-            gap: 40,
+            width: '96%',
+            display: 'flex',
             alignItems: 'center',
-            height: 120
+            justifyContent: 'space-between',
+            padding: '0 8px',
+            gap: 0,
+            height: '70%',
           }}
         >
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <SearchIcon />
-            </span>
+          {/* Search */}
+          <div style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0 }}>
+            <span style={{ marginRight: 8 }}><SearchIcon /></span>
             <input
               type="text"
               placeholder="Search By Job Title, Role"
               value={filters.title}
               onChange={(e) => setFilters(prev => ({ ...prev, title: e.target.value }))}
-              className="w-full pl-10 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+              style={{
+                border: 'none',
+                outline: 'none',
+                fontSize: 15,
+                background: 'transparent',
+                width: '100%',
+                minWidth: 0,
+              }}
             />
           </div>
-          {/* Preferred Location with dropdown icon at right */}
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <LocationIcon />
-            </span>
+          {/* Divider */}
+          <div style={{
+            width: 1,
+            height: '60%',
+            background: '#E5E7EB',
+            margin: '0 8px',
+            borderRadius: 2,
+            alignSelf: 'center'
+          }} />
+          {/* Location */}
+          <div style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0, position: 'relative' }}>
+            <span style={{ marginRight: 8 }}><LocationIcon /></span>
             <select
               value={filters.location}
               onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
-              className="w-full pl-10 pr-12 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-lg"
-              style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none' }}
+              style={{
+                border: 'none',
+                outline: 'none',
+                fontSize: 15,
+                background: 'transparent',
+                width: '100%',
+                minWidth: 0,
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                paddingRight: 24
+              }}
             >
               <option value="">Preferred Location</option>
               {locationOptions.map(loc => (
                 <option key={loc} value={loc}>{loc}</option>
               ))}
             </select>
-            {/* No dropdown chevron for simplicity */}
-          </div>
-          {/* Job Type with dropdown icon at right */}
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <JobTypeIcon />
+            <span style={{ position: 'absolute', right: 4, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
+              <ChevronDownIcon />
             </span>
+          </div>
+          {/* Divider */}
+          <div style={{
+            width: 1,
+            height: '60%',
+            background: '#E5E7EB',
+            margin: '0 8px',
+            borderRadius: 2,
+            alignSelf: 'center'
+          }} />
+          {/* Job Type */}
+          <div style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0, position: 'relative' }}>
+            <span style={{ marginRight: 8 }}><JobTypeIcon /></span>
             <select
               value={filters.jobType}
               onChange={(e) => setFilters(prev => ({ ...prev, jobType: e.target.value }))}
-              className="w-full pl-10 pr-12 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-lg"
-              style={{ appearance: 'none', WebkitAppearance: 'none', MozAppearance: 'none' }}
+              style={{
+                border: 'none',
+                outline: 'none',
+                fontSize: 15,
+                background: 'transparent',
+                width: '100%',
+                minWidth: 0,
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                paddingRight: 24
+              }}
             >
               <option value="">Job type</option>
               {jobTypeOptions.map(type => (
                 <option key={type} value={type}>{type}</option>
               ))}
             </select>
-            {/* No dropdown chevron for simplicity */}
+            <span style={{ position: 'absolute', right: 4, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
+              <ChevronDownIcon />
+            </span>
           </div>
-          {/* Salary Per Month and Range above, slider below */}
-          <div style={{ width: '100%' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <span className="text-sm font-medium text-gray-600" style={{ fontSize: 18, fontWeight: 600 }}>
-                Salary Per Month
-              </span>
-              <span className="font-semibold text-gray-900 text-lg" style={{ minWidth: 130, textAlign: 'right' }}>
+          {/* Divider */}
+          <div style={{
+            width: 1,
+            height: '60%',
+            background: '#E5E7EB',
+            margin: '0 8px',
+            borderRadius: 2,
+            alignSelf: 'center'
+          }} />
+          {/* Salary Range */}
+          <div style={{ flex: 2, minWidth: 200 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 }}>
+              <span style={{ fontSize: 13, fontWeight: 600 }}>Salary Per Month</span>
+              <span style={{ fontWeight: 600, fontSize: 13 }}>
                 ₹{filters.salaryRange[0] / 1000}k - ₹{filters.salaryRange[1] / 1000}k
               </span>
             </div>
@@ -379,12 +325,12 @@ export default function JobManagementApp() {
               step={10000}
               value={filters.salaryRange}
               onChange={range => setFilters(prev => ({ ...prev, salaryRange: range }))}
-              trackStyle={[{ backgroundColor: '#000', height: 4 }]}
+              trackStyle={[{ backgroundColor: '#000', height: 3 }]}
               handleStyle={[
-                { backgroundColor: '#000', border: '2px solid #000', width: 20, height: 20, marginTop: -8 },
-                { backgroundColor: '#000', border: '2px solid #000', width: 20, height: 20, marginTop: -8 }
+                { backgroundColor: '#000', border: '2px solid #000', width: 11, height: 11, marginTop: -4 },
+                { backgroundColor: '#000', border: '2px solid #000', width: 11, height: 11, marginTop: -4 }
               ]}
-              railStyle={{ backgroundColor: '#e5e7eb', height: 4 }}
+              railStyle={{ backgroundColor: '#e5e7eb', height: 3 }}
               style={{ width: '100%' }}
             />
           </div>
@@ -403,7 +349,7 @@ export default function JobManagementApp() {
           width: 1312,
           minHeight: 360,
           left: 64,
-          top: 355,
+          top: 181,
           zIndex: 10
         }}
       >
@@ -569,7 +515,7 @@ export default function JobManagementApp() {
                   {formErrors.jobType && <p className="text-red-500 text-sm mt-1">{formErrors.jobType}</p>}
                 </div>
               </div>
-              {/* Salary Range */}
+              {/* Salary Range and Application Deadline */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-lg font-semibold text-gray-600 mb-2">Salary Range</label>
@@ -589,6 +535,18 @@ export default function JobManagementApp() {
                       className="w-full px-4 py-4 border border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
+                </div>
+                <div>
+                  <label className="block text-lg font-semibold text-gray-600 mb-2">Application Deadline</label>
+                  <input
+                    type="date"
+                    value={formData.applicationDeadline}
+                    onChange={(e) => handleInputChange('applicationDeadline', e.target.value)}
+                    className={`w-full px-4 py-4 border rounded-xl text-lg ${
+                      formErrors.applicationDeadline ? 'border-red-500' : 'border-gray-300'
+                    } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  />
+                  {formErrors.applicationDeadline && <p className="text-red-500 text-sm mt-1">{formErrors.applicationDeadline}</p>}
                 </div>
               </div>
               {/* Job Description */}
